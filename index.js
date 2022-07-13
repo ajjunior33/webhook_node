@@ -11,13 +11,9 @@ const app = express();
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
-
-mongoose.connect('mongodb://localhost:27017/webhookjs-client', { useNewUrlParser: true, useUnifiedTopology: true });
-
 app.post('/webhook-client', async(req, res) => {
     console.log('Inside Callback hook', req.body)
     const { data } = req.body
-    await Model.create(data)
     return res.status(200).end();
 });
 
