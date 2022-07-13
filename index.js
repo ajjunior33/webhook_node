@@ -27,6 +27,8 @@ app.post("/webhook-request", async(request,response) => {
 
 app.post("/webhook-replace", async(request,response) => {
     console.log('Inside Callback hook', request.body)
+
+    return response.status(200).json(request.body)
 });
 const port = process.env.PORT
 app.listen(port, () => {
