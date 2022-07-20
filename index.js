@@ -39,11 +39,13 @@ app.post("/webhook/webhook-openpix-received", async (request, response) => {
         await PaymentReceivedOpenPixService(request.body);
         return response.status(200).json(request.body);
     } catch (err) {
+	console.log(err);
         console.log("Houve um erro ao processar o pagamento.");
     }
 });
 
 const port = process.env.PORT
+const api = process.env.API_URL;
 app.listen(port, () => {
-    console.log(`Client has been stated at: http://localhost:${port}`);
+    console.log(`Client has been stated at: ${port} - api url ${api}`);
 })
