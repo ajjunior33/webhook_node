@@ -12,6 +12,11 @@ const app = express();
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
+app.get("/", async (request, response) => {
+    return response.status(200).json({
+        "message": "Api UP"
+    })
+})
 app.post('/webhook-client', async (req, res) => {
     console.log('Inside Callback hook', req.body)
     const { data } = req.body
