@@ -29,9 +29,13 @@ app.post("/webhook-replace", async (request, response) => {
 });
 
 app.post("/webhook-openpix-received", async (request, response) => {
-    console.log("Novo pagamento recebido");
-    await PaymentReceivedOpenPixService(request.body);
-    return response.status(200).json(request.body);
+    try {
+        console.log("Novo pagamento recebido");
+        await PaymentReceivedOpenPixService(request.body);
+        return response.status(200).json(request.body);
+    } catch ((err) => {
+        console.log("Houve um erro ao processar o pagamento")
+    })
 });
 
 const port = process.env.PORT
