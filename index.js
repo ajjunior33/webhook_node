@@ -29,8 +29,8 @@ app.post("/webhook-replace", async (request, response) => {
 });
 
 app.post("/webhook-openpix-received", async (request, response) => {
-    console.log("Novo pagamento recebido");
-    await PaymentReceivedOpenPixService(request.body);
+    console.log(request.body);
+    // await PaymentReceivedOpenPixService(request.body);
     return response.status(200).json(request.body);
 });
 
